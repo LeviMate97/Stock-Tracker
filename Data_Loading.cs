@@ -14,8 +14,6 @@ namespace Stock_Data_Loading
             string connetionString = "Server = localhost; Database = Stocks; Integrated Security = True;";
             string sql = "SELECT Ticket from Portfolio;";
             string sql2 = "BEGIN IF NOT EXISTS (SELECT * FROM [Stocks].[dbo].[Dividends] WHERE [Ticket] = @Ticket AND [Ex-dividend date] = @ExDividendDate) BEGIN INSERT INTO Dividends([Ticket], [Amount], [Ex-dividend date]) VALUES(@Ticket, @Amount * (SELECT [Quantity] FROM [Stocks].[dbo].[Portfolio] WHERE [Ticket] = @Ticket), @ExDividendDate) END END;";
-
-
             List<string> listStocks = new List<string>();
             string resList = "";
             
